@@ -120,20 +120,6 @@ class SettingsVC: UITableViewController {
         
         switch settingsCell.title {
             
-//        case "My Profile":
-//            self.presentMyProfile()
-//
-//        case "Silence Mode":
-//            self.presentSilenceMenu()
-//
-//        case "What is Bump?":
-//            self.presentWhatIsBump()
-//
-//        case "How To Use":
-//            self.presentHowToUse()
-//
-//        case "Send a Suggestion":
-//            self.presentSendASuggestion()
 //
         case "Helpline":
             self.presentHelpline()

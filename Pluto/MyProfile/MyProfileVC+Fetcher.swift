@@ -21,6 +21,8 @@ extension MyProfileVC : MyUserProfileFetcherDelegate {
         self.myUser?.interests.sort(by: {Int($0.interestID) ?? 0 < Int($1.interestID) ?? 1})
         
         self.tableView.reloadData()
+        
+        self.setupConnectionFetcher()
     }
     
     func setupMyProfileFetcher() {
@@ -53,14 +55,16 @@ extension MyProfileVC : MyUserProfileFetcherDelegate {
             var connectionArray : [Connection] = []
             for userB in uArray.filter({$0.userID != myU.userID}) {
                 
-//                let sharedArray = myU.interests.filter({userB.interests.contains($0)})
-//                let connection = Connection(userA: self.user, userB: userB, sharedInterests: sharedArray)
-//                connectionArray.append(connection)
+                
+                let sharedArray = myU.interests.map({$0.interestID}).filter({userB.interests.contains($0)})
+                let userA = User(userID: myU.userID, email: myU.email, name: myU.name, description: myU.description, imageURL: myU.imageURL, interests: myU.interests.map({$0.interestID}), dateJoined: myU.dateJoined, classYear: myU.classYear)
+                let connection = Connection(userA: userA, userB: userB, sharedInterests: sharedArray)
+                connectionArray.append(connection)
                 
             }
             
-//            self.connectionArray = connectionArray
-//            self.connectionArray.sort(by: {$0.sharedInterests.count > $1.sharedInterests.count})
+            self.connectionArray = connectionArray
+            self.connectionArray.sort(by: {$0.sharedInterests.count > $1.sharedInterests.count})
             
             self.tableView.reloadData()
             

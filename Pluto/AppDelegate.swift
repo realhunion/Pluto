@@ -26,6 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         self.pluto = Pluto()
         self.window?.rootViewController = self.pluto?.homeTabBarVC
+//        self.window?.rootViewController = ViewController()
         window?.makeKeyAndVisible()
         return true
     }

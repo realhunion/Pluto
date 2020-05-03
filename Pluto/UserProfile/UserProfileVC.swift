@@ -92,20 +92,31 @@ class UserProfileVC: UITableViewController {
         
     }
     
+    
+    //MARK: - Table view segment
+    
+    var segmentControl : UISegmentedControl = UISegmentedControl()
+    
     func setupSegmentControl() {
         self.segmentControl.frame = CGRect.zero
         
         self.segmentControl.insertSegment(withTitle: "Artists", at: 0, animated: false)
         self.segmentControl.insertSegment(withTitle: "Connections", at: 1, animated: false)
+        self.segmentControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .medium)], for: .normal)
+        
         self.segmentControl.selectedSegmentIndex = 0
         
         self.segmentControl.addTarget(self, action: #selector(self.segmentIndexChanged(_:)), for: .valueChanged)
     }
     
-    var segmentControl : UISegmentedControl = UISegmentedControl()
+    @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
+        tableView.reloadData()
+    }
+    
+    
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 50.0
+        return 55.0
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -120,10 +131,6 @@ class UserProfileVC: UITableViewController {
         self.segmentControl.layoutToSuperview(.bottom, offset: -10)
         
         return containerView
-    }
-    
-    @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
-        tableView.reloadData()
     }
     
     // MARK: - Table view data source

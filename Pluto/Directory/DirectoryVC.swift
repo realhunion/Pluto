@@ -102,7 +102,11 @@ class DirectoryVC: UITableViewController {
         
         cell.textLabel?.text = u.name
         
-        cell.detailTextLabel?.text = "\(u.interests.count) artists"
+        if u.userID == myUID {
+            cell.detailTextLabel?.text = "\(u.interests.count) artists"
+        } else {
+            cell.detailTextLabel?.text = "\(u.interests.count) artists · \(self.getMutualArtists(for: u)) mutual"
+        }
         
         
         cell.accessoryType = .disclosureIndicator

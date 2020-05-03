@@ -23,6 +23,8 @@ class MyProfileVC: UITableViewController {
     var myProfileFetcher : MyUserProfileFetcher?
     var myUser : UserProfile?
     
+    var connectionArray : [Connection] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -30,8 +32,10 @@ class MyProfileVC: UITableViewController {
         self.navigationItem.largeTitleDisplayMode = .never
         
         self.setupBarButton()
+        self.setupSegmentControl()
         
         self.setupMyProfileFetcher()
+//        self.setupConnectionFetcher()
         
         self.tableView.register(AccessoryTableViewCell.classForCoder(), forCellReuseIdentifier: "myProfileCell")
     }
@@ -68,6 +72,52 @@ class MyProfileVC: UITableViewController {
     
     
     
+    //MARK: - Table view header
+    
+    
+    var segmentControl : UISegmentedControl = UISegmentedControl()
+    
+    func setupSegmentControl() {
+        self.segmentControl.frame = CGRect.zero
+        
+        self.segmentControl.insertSegment(withTitle: "Artists", at: 0, animated: false)
+        self.segmentControl.insertSegment(withTitle: "Connections", at: 1, animated: false)
+        self.segmentControl.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .subheadline).pointSize, weight: .medium)], for: .normal)
+        
+        self.segmentControl.selectedSegmentIndex = 1
+        
+        self.segmentControl.addTarget(self, action: #selector(self.segmentIndexChanged(_:)), for: .valueChanged)
+    }
+    
+    @objc func segmentIndexChanged(_ sender: UISegmentedControl) {
+        tableView.reloadData()
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 {
+            return 30.0
+        } else if section == 1 {
+            return 65.0
+        } else {
+            return 0.0
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        guard section == 1 else { return nil }
+        
+        let containerView = UIView()
+        containerView.backgroundColor = .systemGroupedBackground
+        containerView.addSubview(self.segmentControl)
+        
+        self.segmentControl.set(.height, of: 45)
+        self.segmentControl.layoutToSuperview(.left, offset: 0)
+        self.segmentControl.layoutToSuperview(.right, offset: 0)
+        self.segmentControl.layoutToSuperview(.bottom, offset: -10)
+        
+        return containerView
+    }
     
     
     // MARK: - Table view data source
@@ -79,28 +129,20 @@ class MyProfileVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        guard let profile = self.myUser else { return 0 }
+        guard let myU = self.myUser else { return 0 }
         if section == 0 {
             return 3
         } else {
-            return profile.interests.count
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                return myU.interests.count
+            }
+            else if self.segmentControl.selectedSegmentIndex == 1 {
+                return connectionArray.count
+            }
+            else { return 0 }
         }
     }
     
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        guard let profile = self.myUser else { return nil }
-
-        if section == 0 {
-            return "My Profile"
-        }
-        else if section == 1 {
-            return "My Artists"
-        }
-        else {
-            return nil
-        }
-    }
     
     override func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.imageView?.sd_cancelCurrentImageLoad()
@@ -151,21 +193,36 @@ class MyProfileVC: UITableViewController {
             cell.selectionStyle = .none
         } else {
             
-            let i = myU.interests[indexPath.row]
-            
-            let transformer = SDImageResizingTransformer(size: CGSize(width: 100, height: 100), scaleMode: .aspectFill)
-            cell.imageView?.sd_setImage(with: URL(string: i.imageURL), placeholderImage: UIImage(named: "travisScott")?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0)), options: [.scaleDownLargeImages], context: [.imageTransformer: transformer], progress: nil, completed: { (image, err, cacheType, url) in
-                guard let img = image else { return }
-                cell.imageView?.image = cell.imageView?.image?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0))
-                cell.imageView?.layer.masksToBounds = true
-                cell.imageView?.layer.cornerRadius = 10
-            })
-            
-            cell.textLabel?.text = i.name
-            cell.detailTextLabel?.text = "\(i.likedBy.count)"
-            cell.textLabel?.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)
-            
-            cell.selectionStyle = .default
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                let i = myU.interests[indexPath.row]
+                
+                let transformer = SDImageResizingTransformer(size: CGSize(width: 100, height: 100), scaleMode: .aspectFill)
+                cell.imageView?.sd_setImage(with: URL(string: i.imageURL), placeholderImage: UIImage(named: "travisScott")?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0)), options: [.scaleDownLargeImages], context: [.imageTransformer: transformer], progress: nil, completed: { (image, err, cacheType, url) in
+                    guard let img = image else { return }
+                    cell.imageView?.image = cell.imageView?.image?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0))
+                    cell.imageView?.layer.masksToBounds = true
+                    cell.imageView?.layer.cornerRadius = 10
+                })
+                
+                cell.textLabel?.text = i.name
+                cell.detailTextLabel?.text = nil
+                
+            }
+            else if self.segmentControl.selectedSegmentIndex == 1 {
+                let c = connectionArray[indexPath.row]
+                
+                let transformer = SDImageResizingTransformer(size: CGSize(width: 100, height: 100), scaleMode: .aspectFill)
+                cell.imageView?.sd_setImage(with: URL(string: c.userB.imageURL), placeholderImage: UIImage(named: "travisScott")?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0)), options: [.scaleDownLargeImages], context: [.imageTransformer: transformer], progress: nil, completed: { (image, err, cacheType, url) in
+                    guard let img = image else { return }
+                    cell.imageView?.image = cell.imageView?.image?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0))
+                    cell.imageView?.layer.masksToBounds = true
+                    cell.imageView?.layer.cornerRadius = 10
+                })
+                
+                cell.textLabel?.text = c.userB.name
+                cell.detailTextLabel?.text = "\(c.sharedInterests.count)"
+                
+            }
         }
         
         cell.accessoryType = .disclosureIndicator
@@ -176,7 +233,7 @@ class MyProfileVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        guard let profile = self.myUser else { return }
+        guard let myU = self.myUser else { return }
         
         if indexPath.section == 0 {
             if indexPath.row == 0 {
@@ -191,9 +248,20 @@ class MyProfileVC: UITableViewController {
             
         }
         if indexPath.section == 1 {
-            let vc = InterestProfileVC(style: .insetGrouped)
-            vc.interest = profile.interests[indexPath.row]
-            self.navigationController?.pushViewController(vc, animated: true)
+            if self.segmentControl.selectedSegmentIndex == 0 {
+                let i = myU.interests[indexPath.row]
+                let vc = InterestProfileVC(style: .grouped)
+                vc.interest = i
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
+            
+            if self.segmentControl.selectedSegmentIndex == 1 {
+                let c = self.connectionArray[indexPath.row]
+                let vc = ConnectionVC(style: .insetGrouped)
+                vc.connection = c
+                vc.title = "Connection"
+                self.navigationController?.pushViewController(vc, animated: true)
+            }
         }
     }
     

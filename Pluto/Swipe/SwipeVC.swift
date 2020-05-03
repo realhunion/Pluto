@@ -104,8 +104,8 @@ class SwipeVC: UIViewController {
     
     lazy var backLabel : UILabel = {
         let l = UILabel(frame: CGRect.zero)
-        l.text = "You've swiped em all."
-        l.font = UIFont.systemFont(ofSize: 16.0, weight: .medium)
+        l.text = "That's all we've got.\nYou got em all."
+        l.font = UIFont.systemFont(ofSize: 20.0, weight: .medium)
         l.translatesAutoresizingMaskIntoConstraints = false
         l.textAlignment = .center
         l.numberOfLines = 2

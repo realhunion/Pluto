@@ -42,7 +42,7 @@ class HomeTabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         swipeVC.title = "Swipe"
         directoryVC.title = "Directory"
-//        myProfileVC.title = "My Profile"
+        myProfileVC.title = "My Profile"
         
         
         let myProfileNC = UINavigationController(rootViewController: myProfileVC)

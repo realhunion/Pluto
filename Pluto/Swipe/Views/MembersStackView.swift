@@ -72,52 +72,52 @@ extension MembersStackView: UICollectionViewDataSource {
         cell.layer.cornerRadius = cell.frame.width/2
         cell.backgroundColor = .clear
         
-        let x = Constant.payload[indexPath.row]
-        
-        for view in cell.subviews {
-            view.removeFromSuperview()
-        }
-        
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: cell.bounds.width))
-        cell.addSubview(imageView)
-        
-        let label = UILabel(frame: CGRect(x: 0, y: cell.bounds.width, width: cell.bounds.width, height: 20.0))
-        cell.addSubview(label)
-        label.adjustsFontSizeToFitWidth = true
-        let array = ["Harry","Ross",
-                     "Bruce","Cook",
-                     "Carolyn","Morgan",
-                     "Albert","Walker",
-                     "Randy","Reed",
-                     "Larry","Barnes",
-                     "Lois","Wilson",
-                     "Jesse","Campbell",
-                     "Ernest","Rogers",
-                     "Theresa","Patterson",
-                     "Henry","Simmons",
-                     "Michelle","Perry",
-                     "Frank","Butler",
-                     "Shirley"]
-        let random = Int.random(in: 0...array.count-1)
-        label.text = array[random]
-        label.font  = UIFont.systemFont(ofSize: 13.0, weight: .bold)
-        label.textAlignment = .center
-        
-        imageView.contentMode = .scaleAspectFill
-        imageView.layer.cornerRadius = cell.bounds.width/2
-        imageView.layer.masksToBounds = true
-        imageView.sd_setImage(with: x.imageURL, completed: nil)
-//        imageView.image = UIImage(named: "travisScott")!
-        
-//        (self, action: #selector(handleTap), for: .touchUpInside)
-        imageView.isUserInteractionEnabled = true
-        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
-        singleTap.numberOfTapsRequired = 1
-        imageView.addGestureRecognizer(singleTap)
-        imageView.target(forAction: #selector(handleTap), withSender: self)
-        
-        cell.applyShadow(radius: 0.06 * bounds.width, opacity: 0.4, offset: CGSize(width: 0, height: 0.10 * bounds.width), color: UIColor.black)
-//        cell.clipsToBounds = false
+//        let x = Constant.payload[indexPath.row]
+//
+//        for view in cell.subviews {
+//            view.removeFromSuperview()
+//        }
+//
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: cell.bounds.width, height: cell.bounds.width))
+//        cell.addSubview(imageView)
+//
+//        let label = UILabel(frame: CGRect(x: 0, y: cell.bounds.width, width: cell.bounds.width, height: 20.0))
+//        cell.addSubview(label)
+//        label.adjustsFontSizeToFitWidth = true
+//        let array = ["Harry","Ross",
+//                     "Bruce","Cook",
+//                     "Carolyn","Morgan",
+//                     "Albert","Walker",
+//                     "Randy","Reed",
+//                     "Larry","Barnes",
+//                     "Lois","Wilson",
+//                     "Jesse","Campbell",
+//                     "Ernest","Rogers",
+//                     "Theresa","Patterson",
+//                     "Henry","Simmons",
+//                     "Michelle","Perry",
+//                     "Frank","Butler",
+//                     "Shirley"]
+//        let random = Int.random(in: 0...array.count-1)
+//        label.text = array[random]
+//        label.font  = UIFont.systemFont(ofSize: 13.0, weight: .bold)
+//        label.textAlignment = .center
+//
+//        imageView.contentMode = .scaleAspectFill
+//        imageView.layer.cornerRadius = cell.bounds.width/2
+//        imageView.layer.masksToBounds = true
+//        imageView.sd_setImage(with: x.imageURL, completed: nil)
+////        imageView.image = UIImage(named: "travisScott")!
+//
+////        (self, action: #selector(handleTap), for: .touchUpInside)
+//        imageView.isUserInteractionEnabled = true
+//        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.handleTap))
+//        singleTap.numberOfTapsRequired = 1
+//        imageView.addGestureRecognizer(singleTap)
+//        imageView.target(forAction: #selector(handleTap), withSender: self)
+//
+//        cell.applyShadow(radius: 0.06 * bounds.width, opacity: 0.4, offset: CGSize(width: 0, height: 0.10 * bounds.width), color: UIColor.black)
+////        cell.clipsToBounds = false
         
         return cell
     }
