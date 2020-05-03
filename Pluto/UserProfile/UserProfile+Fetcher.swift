@@ -25,27 +25,27 @@ extension UserProfileVC : InterestsFetcherDelegate {
     }
     
     
-//    func setupConnectionFetcher() {
-//        
-//        DirectoryFetcher.shared.getDirectory(completion: { (uArray) in
-//            
-//            var connectionArray : [Connection] = []
-//            for userB in uArray.filter({$0.userID != self.user.userID}) {
-//                
-//                let sharedArray = self.user.interests.filter({userB.interests.contains($0)})
-//                let connection = Connection(userA: self.user, userB: userB, sharedInterests: sharedArray)
-//                connectionArray.append(connection)
-//                
-//            }
-//            
-//            self.connectionArray = connectionArray
-//            self.connectionArray.sort(by: {$0.sharedInterests.count > $1.sharedInterests.count})
-//            
-//            self.tableView.reloadData()
-//            
-//        })
-//        
-//    }
+    func setupConnectionFetcher() {
+        
+        DirectoryFetcher.shared.getDirectory(completion: { (uArray) in
+            
+            var connectionArray : [Connection] = []
+            for userB in uArray.filter({$0.userID != self.user.userID}) {
+                
+                let sharedArray = self.user.interests.filter({userB.interests.contains($0)})
+                let connection = Connection(userA: self.user, userB: userB, sharedInterests: sharedArray)
+                connectionArray.append(connection)
+                
+            }
+            
+            self.connectionArray = connectionArray
+            self.connectionArray.sort(by: {$0.sharedInterests.count > $1.sharedInterests.count})
+            
+            self.tableView.reloadData()
+            
+        })
+        
+    }
         
     
     
