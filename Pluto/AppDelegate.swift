@@ -20,8 +20,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         self.configureMyFirebase()
         
-//        Auth.auth().signIn(withEmail: "alihunai@grinnell.edu", password: "pppppp", completion: nil)
-        
         
         window = UIWindow(frame: UIScreen.main.bounds)
         self.pluto = Pluto()
@@ -33,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-        pluto?.appWillEnterForeground()
+//        pluto?.appWillEnterForeground()
     }
     
     
