@@ -11,14 +11,11 @@
 		7B03AF26245648C30015C19F /* Pluto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B03AF25245648C30015C19F /* Pluto.swift */; };
 		7B0FC1E72454BDAF002DE71F /* MyProfileVC+Edit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0FC1E62454BDAF002DE71F /* MyProfileVC+Edit.swift */; };
 		7B0FC1EB2454C28E002DE71F /* MyProfileEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B0FC1EA2454C28E002DE71F /* MyProfileEditor.swift */; };
-		7B1FBA872450BC0A0090BA60 /* InterestsFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1FBA862450BC0A0090BA60 /* InterestsFetcher.swift */; };
 		7B232585245114F800CDD49F /* UserProfile+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B232584245114F700CDD49F /* UserProfile+Fetcher.swift */; };
 		7B293E6F244CC4C8003EE7BA /* UserProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E6E244CC4C8003EE7BA /* UserProfileVC.swift */; };
 		7B293E74244CC5F9003EE7BA /* InterestProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E73244CC5F9003EE7BA /* InterestProfileVC.swift */; };
 		7B293E77244CC61D003EE7BA /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E76244CC61D003EE7BA /* Interest.swift */; };
-		7B293E79244CC671003EE7BA /* UsersFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E78244CC671003EE7BA /* UsersFetcher.swift */; };
 		7B293E86244E82D5003EE7BA /* SwipeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E7B244E82D4003EE7BA /* SwipeVC.swift */; };
-		7B293E87244E82D5003EE7BA /* ButtonStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E7D244E82D4003EE7BA /* ButtonStackView.swift */; };
 		7B293E88244E82D5003EE7BA /* MembersStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E7E244E82D4003EE7BA /* MembersStackView.swift */; };
 		7B293E89244E82D5003EE7BA /* TinderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E7F244E82D4003EE7BA /* TinderButton.swift */; };
 		7B293E8A244E82D5003EE7BA /* SampleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E81244E82D4003EE7BA /* SampleCard.swift */; };
@@ -27,10 +24,12 @@
 		7B293E8D244E82D5003EE7BA /* SampleCardFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E84244E82D4003EE7BA /* SampleCardFooterView.swift */; };
 		7B293E8E244E82D5003EE7BA /* SampleCardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B293E85244E82D4003EE7BA /* SampleCardModel.swift */; };
 		7B6C3B3124594944004DBD9B /* MyProfileVC+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B6C3B3024594944004DBD9B /* MyProfileVC+Fetcher.swift */; };
+		7B7DE4B724689A8900928496 /* InterestDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7DE4B624689A8900928496 /* InterestDirectory.swift */; };
+		7B7DE4BA2468B20D00928496 /* InterestProfileVC+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7DE4B92468B20D00928496 /* InterestProfileVC+Fetcher.swift */; };
 		7B8D19B2244C09BD00F95F5B /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19B1244C09BD00F95F5B /* Utility.swift */; };
 		7B8D19B4244C0A0D00F95F5B /* HomeTabBarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19B3244C0A0D00F95F5B /* HomeTabBarVC.swift */; };
 		7B8D19B6244C0A4100F95F5B /* DirectoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19B5244C0A4100F95F5B /* DirectoryVC.swift */; };
-		7B8D19B8244C1AE900F95F5B /* DirectoryFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19B7244C1AE900F95F5B /* DirectoryFetcher.swift */; };
+		7B8D19B8244C1AE900F95F5B /* UserDirectory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19B7244C1AE900F95F5B /* UserDirectory.swift */; };
 		7B8D19BA244C1B0900F95F5B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19B9244C1B0900F95F5B /* User.swift */; };
 		7B8D19BC244C20B000F95F5B /* DirectoryVC+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B8D19BB244C20B000F95F5B /* DirectoryVC+Fetcher.swift */; };
 		7B9154122457F60900BEB0FB /* SwipeVC+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9154112457F60900BEB0FB /* SwipeVC+Fetcher.swift */; };
@@ -39,7 +38,6 @@
 		7B9223DE2452991A0057DECF /* ConnectionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9223DD2452991A0057DECF /* ConnectionVC.swift */; };
 		7B9B9D552453B36B001D1181 /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B9D542453B36B001D1181 /* Connection.swift */; };
 		7B9B9D572453CA5B001D1181 /* SwipeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B9D562453CA5B001D1181 /* SwipeManager.swift */; };
-		7BA018AD2451711300228372 /* InterestProfile+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA018AC2451711300228372 /* InterestProfile+Fetcher.swift */; };
 		7BA7F1AC245B665F00E330D1 /* CardLayoutProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7F195245B665E00E330D1 /* CardLayoutProvider.swift */; };
 		7BA7F1AD245B665F00E330D1 /* CardAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7F196245B665E00E330D1 /* CardAnimationOptions.swift */; };
 		7BA7F1AE245B665F00E330D1 /* SwipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BA7F197245B665E00E330D1 /* SwipeView.swift */; };
@@ -86,14 +84,11 @@
 		7B03AF25245648C30015C19F /* Pluto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pluto.swift; sourceTree = "<group>"; };
 		7B0FC1E62454BDAF002DE71F /* MyProfileVC+Edit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyProfileVC+Edit.swift"; sourceTree = "<group>"; };
 		7B0FC1EA2454C28E002DE71F /* MyProfileEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileEditor.swift; sourceTree = "<group>"; };
-		7B1FBA862450BC0A0090BA60 /* InterestsFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsFetcher.swift; sourceTree = "<group>"; };
 		7B232584245114F700CDD49F /* UserProfile+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserProfile+Fetcher.swift"; sourceTree = "<group>"; };
 		7B293E6E244CC4C8003EE7BA /* UserProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileVC.swift; sourceTree = "<group>"; };
 		7B293E73244CC5F9003EE7BA /* InterestProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestProfileVC.swift; sourceTree = "<group>"; };
 		7B293E76244CC61D003EE7BA /* Interest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interest.swift; sourceTree = "<group>"; };
-		7B293E78244CC671003EE7BA /* UsersFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersFetcher.swift; sourceTree = "<group>"; };
 		7B293E7B244E82D4003EE7BA /* SwipeVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeVC.swift; sourceTree = "<group>"; };
-		7B293E7D244E82D4003EE7BA /* ButtonStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ButtonStackView.swift; sourceTree = "<group>"; };
 		7B293E7E244E82D4003EE7BA /* MembersStackView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MembersStackView.swift; sourceTree = "<group>"; };
 		7B293E7F244E82D4003EE7BA /* TinderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TinderButton.swift; sourceTree = "<group>"; };
 		7B293E81244E82D4003EE7BA /* SampleCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCard.swift; sourceTree = "<group>"; };
@@ -102,10 +97,12 @@
 		7B293E84244E82D4003EE7BA /* SampleCardFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCardFooterView.swift; sourceTree = "<group>"; };
 		7B293E85244E82D4003EE7BA /* SampleCardModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleCardModel.swift; sourceTree = "<group>"; };
 		7B6C3B3024594944004DBD9B /* MyProfileVC+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MyProfileVC+Fetcher.swift"; sourceTree = "<group>"; };
+		7B7DE4B624689A8900928496 /* InterestDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestDirectory.swift; sourceTree = "<group>"; };
+		7B7DE4B92468B20D00928496 /* InterestProfileVC+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InterestProfileVC+Fetcher.swift"; sourceTree = "<group>"; };
 		7B8D19B1244C09BD00F95F5B /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		7B8D19B3244C0A0D00F95F5B /* HomeTabBarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarVC.swift; sourceTree = "<group>"; };
 		7B8D19B5244C0A4100F95F5B /* DirectoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryVC.swift; sourceTree = "<group>"; };
-		7B8D19B7244C1AE900F95F5B /* DirectoryFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DirectoryFetcher.swift; sourceTree = "<group>"; };
+		7B8D19B7244C1AE900F95F5B /* UserDirectory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDirectory.swift; sourceTree = "<group>"; };
 		7B8D19B9244C1B0900F95F5B /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		7B8D19BB244C20B000F95F5B /* DirectoryVC+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DirectoryVC+Fetcher.swift"; sourceTree = "<group>"; };
 		7B9154112457F60900BEB0FB /* SwipeVC+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SwipeVC+Fetcher.swift"; sourceTree = "<group>"; };
@@ -114,7 +111,6 @@
 		7B9223DD2452991A0057DECF /* ConnectionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionVC.swift; sourceTree = "<group>"; };
 		7B9B9D542453B36B001D1181 /* Connection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		7B9B9D562453CA5B001D1181 /* SwipeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeManager.swift; sourceTree = "<group>"; };
-		7BA018AC2451711300228372 /* InterestProfile+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "InterestProfile+Fetcher.swift"; sourceTree = "<group>"; };
 		7BA7F195245B665E00E330D1 /* CardLayoutProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardLayoutProvider.swift; sourceTree = "<group>"; };
 		7BA7F196245B665E00E330D1 /* CardAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardAnimationOptions.swift; sourceTree = "<group>"; };
 		7BA7F197245B665E00E330D1 /* SwipeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeView.swift; sourceTree = "<group>"; };
@@ -183,7 +179,6 @@
 			isa = PBXGroup;
 			children = (
 				7B293E76244CC61D003EE7BA /* Interest.swift */,
-				7B1FBA862450BC0A0090BA60 /* InterestsFetcher.swift */,
 				7B293E6E244CC4C8003EE7BA /* UserProfileVC.swift */,
 				7B232584245114F700CDD49F /* UserProfile+Fetcher.swift */,
 			);
@@ -193,19 +188,10 @@
 		7B293E72244CC5E3003EE7BA /* InterestProfile */ = {
 			isa = PBXGroup;
 			children = (
-				7B293E75244CC613003EE7BA /* Model */,
 				7B293E73244CC5F9003EE7BA /* InterestProfileVC.swift */,
-				7BA018AC2451711300228372 /* InterestProfile+Fetcher.swift */,
+				7B7DE4B92468B20D00928496 /* InterestProfileVC+Fetcher.swift */,
 			);
 			path = InterestProfile;
-			sourceTree = "<group>";
-		};
-		7B293E75244CC613003EE7BA /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				7B293E78244CC671003EE7BA /* UsersFetcher.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		7B293E7A244E82D4003EE7BA /* Swipe */ = {
@@ -224,7 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				7BE53B512467D6480016F85E /* MemberStack */,
-				7B293E7D244E82D4003EE7BA /* ButtonStackView.swift */,
 				7B293E7F244E82D4003EE7BA /* TinderButton.swift */,
 				7B293E80244E82D4003EE7BA /* SampleCard */,
 			);
@@ -243,6 +228,15 @@
 			path = SampleCard;
 			sourceTree = "<group>";
 		};
+		7B7DE4B824689A9000928496 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				7B8D19B7244C1AE900F95F5B /* UserDirectory.swift */,
+				7B7DE4B624689A8900928496 /* InterestDirectory.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
 		7B8D19AE244C096900F95F5B /* Directory */ = {
 			isa = PBXGroup;
 			children = (
@@ -257,7 +251,6 @@
 			isa = PBXGroup;
 			children = (
 				7B8D19B9244C1B0900F95F5B /* User.swift */,
-				7B8D19B7244C1AE900F95F5B /* DirectoryFetcher.swift */,
 				7BCBC57F245D4C0000CF7391 /* MyUserFetcher.swift */,
 			);
 			path = Model;
@@ -369,6 +362,7 @@
 		7BAB8DFB244BB50E00997AD6 /* Pluto */ = {
 			isa = PBXGroup;
 			children = (
+				7B7DE4B824689A9000928496 /* Shared */,
 				7BAB8DFC244BB50E00997AD6 /* AppDelegate.swift */,
 				7B8D19B1244C09BD00F95F5B /* Utility.swift */,
 				7BAB8E00244BB50E00997AD6 /* ViewController.swift */,
@@ -544,14 +538,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B8D19B6244C0A4100F95F5B /* DirectoryVC.swift in Sources */,
+				7B7DE4B724689A8900928496 /* InterestDirectory.swift in Sources */,
 				7B8D19B2244C09BD00F95F5B /* Utility.swift in Sources */,
 				7BA7F1B0245B665F00E330D1 /* CardAnimator.swift in Sources */,
 				7BA7F1AC245B665F00E330D1 /* CardLayoutProvider.swift in Sources */,
 				7B03AF26245648C30015C19F /* Pluto.swift in Sources */,
 				7BA7F1AD245B665F00E330D1 /* CardAnimationOptions.swift in Sources */,
-				7B1FBA872450BC0A0090BA60 /* InterestsFetcher.swift in Sources */,
 				7BA7F1B5245B665F00E330D1 /* CardStackAnimator.swift in Sources */,
-				7B293E79244CC671003EE7BA /* UsersFetcher.swift in Sources */,
 				7B293E8A244E82D5003EE7BA /* SampleCard.swift in Sources */,
 				7B293E8C244E82D5003EE7BA /* SampleCardOverlay.swift in Sources */,
 				7B232585245114F800CDD49F /* UserProfile+Fetcher.swift in Sources */,
@@ -560,10 +553,10 @@
 				7B293E8E244E82D5003EE7BA /* SampleCardModel.swift in Sources */,
 				7B8D19BA244C1B0900F95F5B /* User.swift in Sources */,
 				7BC9115024552A6900010D1B /* ConnectionVC+Fetcher.swift in Sources */,
+				7B7DE4BA2468B20D00928496 /* InterestProfileVC+Fetcher.swift in Sources */,
 				7BC911532455337800010D1B /* SettingsVC.swift in Sources */,
 				7B0FC1E72454BDAF002DE71F /* MyProfileVC+Edit.swift in Sources */,
 				7B293E8B244E82D5003EE7BA /* SampleCardContentView.swift in Sources */,
-				7BA018AD2451711300228372 /* InterestProfile+Fetcher.swift in Sources */,
 				7BA7F1B4245B665F00E330D1 /* CardStackAnimationOptions.swift in Sources */,
 				7BA7F1BB245B665F00E330D1 /* SwipeDirection.swift in Sources */,
 				7BA7F1CA245B9E2500E330D1 /* LoginManager.swift in Sources */,
@@ -574,7 +567,6 @@
 				7BA7F1C9245B9E2500E330D1 /* SignupView+Button.swift in Sources */,
 				7BA7F1BE245B665F00E330D1 /* UIView+Extensions.swift in Sources */,
 				7B9223DE2452991A0057DECF /* ConnectionVC.swift in Sources */,
-				7B293E87244E82D5003EE7BA /* ButtonStackView.swift in Sources */,
 				7B8D19BC244C20B000F95F5B /* DirectoryVC+Fetcher.swift in Sources */,
 				7BA7F1BC245B665F00E330D1 /* Array+Extensions.swift in Sources */,
 				7BAB8E01244BB50E00997AD6 /* ViewController.swift in Sources */,
@@ -589,7 +581,7 @@
 				7BA7F1C7245B9E2500E330D1 /* LoginView+Button.swift in Sources */,
 				7BA7F1B7245B665F00E330D1 /* CardStackTransformProvider.swift in Sources */,
 				7BA7F1C8245B9E2500E330D1 /* LoginView.swift in Sources */,
-				7B8D19B8244C1AE900F95F5B /* DirectoryFetcher.swift in Sources */,
+				7B8D19B8244C1AE900F95F5B /* UserDirectory.swift in Sources */,
 				7BA7F1BD245B665F00E330D1 /* CGVector+Extensions.swift in Sources */,
 				7BAB8DFD244BB50E00997AD6 /* AppDelegate.swift in Sources */,
 				7B293E88244E82D5003EE7BA /* MembersStackView.swift in Sources */,

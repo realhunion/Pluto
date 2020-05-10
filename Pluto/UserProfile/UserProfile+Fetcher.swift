@@ -9,31 +9,46 @@
 import Foundation
 import Firebase
 
-extension UserProfileVC : InterestsFetcherDelegate {
+extension UserProfileVC  {
     
-    func setupUserInterestFetcher() {
-        self.userInterestsFetcher = InterestsFetcher(interestIDArray: self.user.interests)
-        self.userInterestsFetcher?.delegate = self
-        self.userInterestsFetcher?.fetchInterests()
+    
+    func setupFetcher() {
+        
+        UserDirectory.shared.fetchUser(userID: self.userID) { (user) in
+            guard let u = user else { return }
+            
+            self.setupSegmentControl()
+            self.setupHeaderProfile(user: u)
+            
+            
+            self.setupInterestsFetcher(user: u)
+            self.setupConnectionFetcher(user: u)
+            
+        }
     }
     
-    func interestArrayFetched(array: [Interest]) {
-        self.interestArray = array
-        self.interestArray.sort(by: {Int($0.interestID) ?? 0 < Int($1.interestID) ?? 1})
+    
+    
+    func setupInterestsFetcher(user : User) {
         
-        self.tableView.reloadData()
+        InterestDirectory.shared.getInterests(interestIDArray: user.interests) { (interestArray) in
+            self.interestArray = interestArray
+            self.tableView.reloadData()
+        }
+        
     }
     
     
-    func setupConnectionFetcher() {
+    
+    func setupConnectionFetcher(user : User) {
         
-        DirectoryFetcher.shared.getDirectory(completion: { (uArray) in
+        UserDirectory.shared.getDirectory(completion: { (uArray) in
             
             var connectionArray : [Connection] = []
-            for userB in uArray.filter({$0.userID != self.user.userID}) {
+            for userB in uArray.filter({$0.userID != user.userID}) {
                 
-                let sharedArray = self.user.interests.filter({userB.interests.contains($0)})
-                let connection = Connection(userA: self.user, userB: userB, sharedInterests: sharedArray)
+                let sharedArray = user.interests.filter({userB.interests.contains($0)})
+                let connection = Connection(userA: user, userB: userB, sharedInterests: sharedArray)
                 connectionArray.append(connection)
                 
             }

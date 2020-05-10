@@ -148,35 +148,4 @@ class SwipeManager {
     
     
     
-    
-    //MARK: - GET INTEREST
-    
-    func getInterest(interestID : String, completion: @escaping (_ interest : Interest?) -> Void) {
-        
-        db.collection("Interest-Profile").document(interestID).getDocument { (snap, err) in
-            guard let doc = snap else { completion(nil); return }
-            
-            if let name = doc.data()?["name"] as? String, let description = doc.data()?["description"] as? String, let imageURL = doc.data()?["imageURL"] as? String {
-                
-                var metaUserArray : [MetaUser] = []
-                let likedBy = doc.data()?["likedBy"] as? [Any] ?? []
-                for object in likedBy {
-                    if let o = object as? [String:Any] {
-                        if let uid = o["userID"] as? String, let name = o["name"] as? String {
-                            let mUser = MetaUser(userID: uid, name: name)
-                            metaUserArray.append(mUser)
-                        }
-                    }
-                }
-                
-                let interest = Interest(interestID: interestID, name: name, description: description, imageURL: imageURL, likedBy: metaUserArray)
-                completion(interest)
-                return
-                
-            }
-        }
-        
-    }
-    
-    
 }

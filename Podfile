@@ -11,6 +11,7 @@ pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
+pod 'FirebaseUI/Storage', '~> 8.0'
 
 pod 'SDWebImage', '~> 5.0'
 

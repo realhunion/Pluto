@@ -1,6 +1,6 @@
 
 import QuickLayout
-
+import Firebase
 
 class SampleCard: SwipeCard {
     
@@ -57,7 +57,7 @@ class SampleCard: SwipeCard {
         spinner.layoutToSuperview(.centerX)
         spinner.layoutToSuperview(.centerY)
         
-        SwipeManager.shared.getInterest(interestID: id) { (interest) in
+        InterestDirectory.shared.getInterest(interestID: id) { (interest) in
             
             spinner.stopAnimating()
             guard let i = interest else { return }
@@ -66,15 +66,22 @@ class SampleCard: SwipeCard {
             
             let content = self.content as! SampleCardContentView
             content.setupImage(withImageURL: URL(string: i.imageURL))
+            
+            let uIDArray = i.likedBy.map({$0.userID})
+            
             if !i.likedBy.isEmpty {
-                content.setupMembersStackView(metaUserArray: i.likedBy)
+                
+                if Auth.auth().currentUser != nil {
+                    UserDirectory.shared.getUsers(userIDArray: uIDArray) { (userArray) in
+                        content.setupMembersStackView(userArray: userArray)
+                    }
+                }
             }
-//
-            let footer = SampleCardFooterView(withTitle: i.name, subtitle:  i.description)
 
+            let footer = SampleCardFooterView(withTitle: i.name, subtitle:  i.description)
             footer.interest = interest
             self.footer = footer
-//
+
         }
     }
     

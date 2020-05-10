@@ -65,9 +65,10 @@ class Pluto {
         
         guard LoginManager.shared.isLoggedIn() else { return }
         
-        self.homeTabBarVC.directoryVC.fetchDirectory()
-        
-//        self.homeTabBarVC.myProfileVC.refreshMyProfileFetcher()
+        UserDirectory.shared.fetchDirectory { (uArray) in
+            self.homeTabBarVC.directoryVC.fetchDirectory()
+            self.homeTabBarVC.myProfileVC.fetchConnections()
+        }
     }
     
 }

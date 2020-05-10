@@ -23,10 +23,7 @@ class InterestProfileVC: UITableViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    var interest : Interest!
-//    var interestID : String!
-    
-    var interestUsersFetcher : UsersFetcher?
+    var interestID : String!
     
     var userArray : [User] = []
 
@@ -36,35 +33,33 @@ class InterestProfileVC: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .never
         
-//        SwipeManager.shared.getInterest(interestID: self.interestID) { (i) in
-//            guard inter = i else { return }
-//        }
-        
         self.setupFetcher()
-        self.setupHeaderProfile()
         
         self.tableView.register(SubtitleTableViewCell.classForCoder(), forCellReuseIdentifier: "interestProfileCell")
     }
+
     
-    func setupFetcher() {
-        //FIX: make it such that they dont call on users again.
-        self.interestUsersFetcher = UsersFetcher(userIDArray: self.interest.likedBy.map({$0.userID}))
-        self.interestUsersFetcher?.delegate = self
-        self.interestUsersFetcher?.fetchInterestProfile()
-    }
+    
+    //MARK: - TOOL
+    
+    lazy var spinner : UIActivityIndicatorView = {
+        let spinner = UIActivityIndicatorView()
+        spinner.hidesWhenStopped = true
+        return spinner
+    }()
     
     
     
     //MARK: - Header
     
-    func setupHeaderProfile() {
+    func setupHeaderProfile(interest : Interest) {
         
         let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 300))
         v.backgroundColor = .systemGroupedBackground
         
         let userImageView = UIImageView()
         userImageView.backgroundColor = UIColor.green.withAlphaComponent(0.8)
-        userImageView.sd_setImage(with: URL(string: self.interest.imageURL), completed: nil)
+        userImageView.sd_setImage(with: URL(string: interest.imageURL), completed: nil)
         userImageView.clipsToBounds = true
         userImageView.contentMode = .scaleAspectFit
         userImageView.layer.masksToBounds = true
@@ -73,13 +68,13 @@ class InterestProfileVC: UITableViewController {
         v.addSubview(userImageView)
         
         let nameLabel = UILabel()
-        nameLabel.text = self.interest.name
+        nameLabel.text = interest.name
         nameLabel.font = UIFont.systemFont(ofSize: 24.0, weight: .bold)
         nameLabel.textAlignment = .center
         v.addSubview(nameLabel)
         
         let descripLabel = UILabel()
-        descripLabel.text = "\(self.interest.likedBy.count) Members"
+        descripLabel.text = "\(interest.likedBy.count) Members"
         descripLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         descripLabel.textAlignment = .center
         descripLabel.numberOfLines = 1
@@ -132,12 +127,12 @@ class InterestProfileVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "interestProfileCell", for: indexPath)
         
-                cell.textLabel?.numberOfLines = 99
+        cell.accessoryType = .disclosureIndicator
+        cell.textLabel?.numberOfLines = 99
         
         let u = self.userArray[indexPath.row]
         
-        cell.accessoryType = .disclosureIndicator
-
+        
         let transformer = SDImageResizingTransformer(size: CGSize(width: 100, height: 100), scaleMode: .aspectFill)
         cell.imageView?.sd_setImage(with: URL(string: u.imageURL), placeholderImage: UIImage(named: "travisScott")?.resizedImage(newSize: CGSize(width: 40.0, height: 40.0)), options: [.scaleDownLargeImages], context: [.imageTransformer: transformer], progress: nil, completed: { (image, err, cacheType, url) in
             guard let img = image else { return }
@@ -146,8 +141,8 @@ class InterestProfileVC: UITableViewController {
             cell.imageView?.layer.cornerRadius = 10
         })
         
+        
         cell.textLabel?.text = u.name
-
         return cell
     }
 
@@ -156,7 +151,7 @@ class InterestProfileVC: UITableViewController {
         let user = self.userArray[indexPath.row]
         
         let vc = UserProfileVC(style: .insetGrouped)
-        vc.user = user
+        vc.userID = user.userID
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

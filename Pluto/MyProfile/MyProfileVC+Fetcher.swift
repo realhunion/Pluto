@@ -22,7 +22,7 @@ extension MyProfileVC : MyUserProfileFetcherDelegate {
         
         self.tableView.reloadData()
         
-        self.setupConnectionFetcher()
+        self.fetchConnections()
     }
     
     func setupMyProfileFetcher() {
@@ -35,22 +35,14 @@ extension MyProfileVC : MyUserProfileFetcherDelegate {
         self.myProfileFetcher?.monitorMyProfile()
     }
     
-    func refreshMyProfileFetcher() {
-        self.myProfileFetcher?.shutDown()
-        
-        self.myProfileFetcher = MyUserProfileFetcher()
-        self.myProfileFetcher?.delegate = self
-        self.myProfileFetcher?.monitorMyProfile()
-    }
-    
     
     //MARK: - connection
     
-    func setupConnectionFetcher() {
+    func fetchConnections() {
         
         guard let myU = self.myUser else { return }
         
-        DirectoryFetcher.shared.getDirectory(completion: { (uArray) in
+        UserDirectory.shared.getDirectory(completion: { (uArray) in
             
             var connectionArray : [Connection] = []
             for userB in uArray.filter({$0.userID != myU.userID}) {

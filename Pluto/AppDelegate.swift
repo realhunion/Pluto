@@ -37,14 +37,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     
-    
     // MARK: - Configure Firebase
     
     func configureMyFirebase() {
         FirebaseApp.configure()
         let settings = FirestoreSettings()
         settings.isPersistenceEnabled = false
-//        self.db = Firestore.firestore()
         Firestore.firestore().settings = settings
     }
     

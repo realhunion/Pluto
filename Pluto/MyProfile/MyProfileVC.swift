@@ -35,7 +35,7 @@ class MyProfileVC: UITableViewController {
         self.setupSegmentControl()
         
         self.setupMyProfileFetcher()
-//        self.setupConnectionFetcher()
+//        self.fetchConnections()
         
         self.tableView.register(AccessoryTableViewCell.classForCoder(), forCellReuseIdentifier: "myProfileCell")
     }
@@ -193,6 +193,8 @@ class MyProfileVC: UITableViewController {
             cell.selectionStyle = .none
         } else {
             
+            cell.textLabel?.font = UIFont.systemFont(ofSize: UIFont.preferredFont(forTextStyle: .body).pointSize, weight: .regular)
+            
             if self.segmentControl.selectedSegmentIndex == 0 {
                 let i = myU.interests[indexPath.row]
                 
@@ -251,7 +253,7 @@ class MyProfileVC: UITableViewController {
             if self.segmentControl.selectedSegmentIndex == 0 {
                 let i = myU.interests[indexPath.row]
                 let vc = InterestProfileVC(style: .grouped)
-                vc.interest = i
+                vc.interestID = i.interestID
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             

@@ -50,12 +50,12 @@ class SampleCardContentView: UIView {
         //[SDWebImageOptions.fromLoaderOnly]
     }
     
-    func setupMembersStackView(metaUserArray : [MetaUser]) {
+    func setupMembersStackView(userArray : [User]) {
         
         let height : CGFloat = 120.0
         let m = MembersStackView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: height), collectionViewLayout: UICollectionViewFlowLayout())
         m.clipsToBounds = true
-        m.userArray = metaUserArray
+        m.userArray = userArray
         addSubview(m)
         m.layoutToSuperview(.top, offset: 0)
         m.layoutToSuperview(.left, offset: 0)

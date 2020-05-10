@@ -9,10 +9,11 @@
 import Foundation
 import UIKit
 import SDWebImage
+import Firebase
 
 class MembersStackView : UICollectionView, UICollectionViewDelegate {
     
-    var userArray : [MetaUser] = []
+    var userArray : [User] = []
     
     override init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
         let cLayout = UICollectionViewFlowLayout()
@@ -22,8 +23,6 @@ class MembersStackView : UICollectionView, UICollectionViewDelegate {
         cLayout.itemSize = CGSize(width: frame.height-40, height: frame.height-40)
         cLayout.minimumLineSpacing = 4
         cLayout.minimumInteritemSpacing = 0
-        
-        
         
         super.init(frame: frame, collectionViewLayout: cLayout)
         
@@ -39,18 +38,6 @@ class MembersStackView : UICollectionView, UICollectionViewDelegate {
     
     required init(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    
-    //    @objc private func handleTap(_ button: TinderButton) {
-    @objc private func handleTap() {
-        
-        if var topController = UIApplication.shared.keyWindow?.rootViewController {
-            while let presentedViewController = topController.presentedViewController {
-                topController = presentedViewController
-            }
-        }
     }
 }
 
@@ -71,15 +58,15 @@ extension MembersStackView: UICollectionViewDataSource {
             cell.nameLabel.text = "Members"
         } else {
             
-            let metaUser = self.userArray[indexPath.row-1]
+            let u = self.userArray[indexPath.row-1]
             
-            metaUser.getImageRef().downloadURL { (url, err) in
-                guard let theURL = url else { return }
-                let transformer = SDImageResizingTransformer(size: CGSize(width: 200, height: 200), scaleMode: .aspectFill)
-                cell.imageView.sd_setImage(with: theURL, placeholderImage: UIImage(named: "travisScott"), options: [.scaleDownLargeImages], context: [.imageTransformer: transformer], progress: nil)
+            cell.imageView.sd_setImage(with: URL(string: u.imageURL), placeholderImage: UIImage(named: "travisScott"))
+            
+            if let firstName = u.name.components(separatedBy: " ").first {
+                cell.nameLabel.text = firstName
+            } else {
+                cell.nameLabel.text = u.name
             }
-            
-            cell.nameLabel.text = metaUser.name
         }
         
         return cell

@@ -8,7 +8,14 @@
 
 import Foundation
 
-extension ConnectionVC : InterestsFetcherDelegate {
+extension ConnectionVC {
+    
+    
+    func setupFetcher() {
+        InterestDirectory.shared.getInterests(interestIDArray: self.connection.sharedInterests) { (interestArray) in
+            self.interestArrayFetched(array: interestArray)
+        }
+    }
     
     func interestArrayFetched(array: [Interest]) {
         

@@ -15,7 +15,6 @@ class ConnectionVC : UITableViewController {
     
     var connection : Connection!
     
-    var sharedInterestsFetcher : InterestsFetcher?
     var sharedInterestArray : [Interest] = []
     
     override init(style: UITableView.Style) {
@@ -38,12 +37,6 @@ class ConnectionVC : UITableViewController {
         self.setupFetcher()
         
         self.tableView.register(AccessoryTableViewCell.classForCoder(), forCellReuseIdentifier: "connectionCell")
-    }
-    
-    func setupFetcher() {
-        self.sharedInterestsFetcher = InterestsFetcher(interestIDArray: connection.sharedInterests)
-        self.sharedInterestsFetcher?.delegate = self
-        self.sharedInterestsFetcher?.fetchInterests()
     }
     
     
@@ -135,12 +128,12 @@ class ConnectionVC : UITableViewController {
         if indexPath.section == 0 {
             if indexPath.row == 0 {
                 let vc = UserProfileVC(style: .insetGrouped)
-                vc.user = self.connection.userA
+                vc.userID = self.connection.userA.userID
                 self.navigationController?.pushViewController(vc, animated: true)
             }
             if indexPath.row == 1 {
                 let vc = UserProfileVC(style: .insetGrouped)
-                vc.user = self.connection.userB
+                vc.userID = self.connection.userB.userID
                 self.navigationController?.pushViewController(vc, animated: true)
             }
         }
@@ -148,7 +141,7 @@ class ConnectionVC : UITableViewController {
         if indexPath.section == 1 {
             let i = self.sharedInterestArray[indexPath.row]
             let vc = InterestProfileVC(style: .insetGrouped)
-            vc.interest = i
+            vc.interestID = i.interestID
             self.navigationController?.pushViewController(vc, animated: true)
         }
     }

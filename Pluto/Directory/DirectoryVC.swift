@@ -28,7 +28,6 @@ class DirectoryVC: UITableViewController {
     
     func shutDown() {
         
-        DirectoryFetcher.shared.shutDown()
         self.myUserFetcher?.shutDown()
         self.myUserFetcher = nil
         
@@ -119,7 +118,7 @@ class DirectoryVC: UITableViewController {
         
         let u = self.userArray[indexPath.row]
         let vc = UserProfileVC(style: .insetGrouped)
-        vc.user = u
+        vc.userID = u.userID
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

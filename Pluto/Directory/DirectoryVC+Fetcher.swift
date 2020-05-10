@@ -56,7 +56,7 @@ extension DirectoryVC : MyUserFetcherDelegate {
     
     func fetchDirectory() {
         
-        DirectoryFetcher.shared.fetchDirectory { (userArray) in
+        UserDirectory.shared.getDirectory { (userArray) in
             self.refreshControl?.endRefreshing()
             self.spinner.stopAnimating()
             

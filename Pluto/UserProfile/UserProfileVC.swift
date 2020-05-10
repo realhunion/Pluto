@@ -12,9 +12,7 @@ import SDWebImage
 
 class UserProfileVC: UITableViewController {
     
-    var userInterestsFetcher : InterestsFetcher?
-    
-    var user : User!
+    var userID : String!
     
     var interestArray : [Interest] = []
     var connectionArray : [Connection] = []
@@ -22,29 +20,22 @@ class UserProfileVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.title = user.email
-        
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .never
         
-        self.setupHeaderProfile()
-        
-        self.setupSegmentControl()
-        
-        self.setupUserInterestFetcher()
-        self.setupConnectionFetcher()
+        self.setupFetcher()
         
         self.tableView.register(AccessoryTableViewCell.classForCoder(), forCellReuseIdentifier: "userProfileCell")
     }
     
-    func setupHeaderProfile() {
+    func setupHeaderProfile(user : User) {
         
         let v = UIView(frame: CGRect(x: 0, y: 0, width: self.view.bounds.width, height: 300))
         v.backgroundColor = .systemGroupedBackground
         
         let userImageView = UIImageView()
         userImageView.backgroundColor = UIColor.green.withAlphaComponent(0.8)
-        userImageView.sd_setImage(with: URL(string: self.user.imageURL), completed: nil)
+        userImageView.sd_setImage(with: URL(string: user.imageURL), completed: nil)
         userImageView.clipsToBounds = true
         userImageView.contentMode = .scaleAspectFill
         userImageView.layer.masksToBounds = true
@@ -53,17 +44,17 @@ class UserProfileVC: UITableViewController {
         v.addSubview(userImageView)
         
         let nameLabel = UILabel()
-        nameLabel.text = self.user.name
+        nameLabel.text = user.name
         nameLabel.font = UIFont.systemFont(ofSize: 24.0, weight: .bold)
         nameLabel.textAlignment = .center
         v.addSubview(nameLabel)
         
         let descripLabel = UILabel()
-        if user.classYear == 1 { descripLabel.text = "1st Year · \(self.user.description)" }
-        else if user.classYear == 2 { descripLabel.text = "2nd Year · \(self.user.description)" }
-        else if user.classYear == 3 { descripLabel.text = "3rd Year · \(self.user.description)" }
-        else if user.classYear == 4 { descripLabel.text = "4th Year · \(self.user.description)" }
-        else { descripLabel.text = self.user.description }
+        if user.classYear == 1 { descripLabel.text = "1st Year · \(user.description)" }
+        else if user.classYear == 2 { descripLabel.text = "2nd Year · \(user.description)" }
+        else if user.classYear == 3 { descripLabel.text = "3rd Year · \(user.description)" }
+        else if user.classYear == 4 { descripLabel.text = "4th Year · \(user.description)" }
+        else { descripLabel.text = user.description }
         descripLabel.font = UIFont.systemFont(ofSize: 16.0, weight: .regular)
         descripLabel.textAlignment = .center
         descripLabel.numberOfLines = 2
@@ -201,7 +192,7 @@ class UserProfileVC: UITableViewController {
         if self.segmentControl.selectedSegmentIndex == 0 {
             let i = self.interestArray[indexPath.row]
             let vc = InterestProfileVC(style: .grouped)
-            vc.interest = i
+            vc.interestID = i.interestID
             self.navigationController?.pushViewController(vc, animated: true)
         }
         

@@ -71,7 +71,7 @@ extension LoginView {
                     
                     (UIApplication.shared.delegate as! AppDelegate).pluto?.logIn()
 //                }
-                //FIX: better to only pick up DirectoryFetcher on success login.
+                //FIX: better to only pick up UserDirectory on success login.
                 
                 
 //            }

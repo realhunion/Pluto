@@ -24,12 +24,7 @@ class SampleCardFooterView: UIView {
         guard LoginManager.shared.isLoggedIn() else { return }
         guard let i = self.interest else { return }
         if let topVC = UIApplication.topViewController() as? SwipeVC {
-            if let topNC = topVC.navigationController {
-                let vc = InterestProfileVC(style: .insetGrouped)
-                vc.interest = i
-                topNC.pushViewController(vc, animated: true)
-                
-            }
+            topVC.presentInterestVC(interestID: i.interestID)
         }
     }
     
@@ -58,36 +53,18 @@ class SampleCardFooterView: UIView {
             label.numberOfLines = 2
         }
         
-//        label.backgroundColor = UIColor.yellow.withAlphaComponent(0.36)
-        
         label.attributedText = attributedText
         label.adjustsFontSizeToFitWidth = true
         addSubview(label)
         
-//        label.translatesAutoresizingMaskIntoConstraints = false
-        boostButton.translatesAutoresizingMaskIntoConstraints = false
         
         self.addSubview(boostButton)
-        
+        boostButton.translatesAutoresizingMaskIntoConstraints = false
         boostButton.layoutToSuperview(.right, offset: -20)
         boostButton.layoutToSuperview(.top, offset: 0)
-//        boostButton.layoutToSuperview(.bottom, offset: -20)
-//        boostButton.layoutToSuperview(.centerY)
-        
-//        boostButton.widthAnchor.constraint(equalTo: boostButton.heightAnchor, multiplier: 1.0).isActive = true
-        
-//        boostButton.layout(
         boostButton.set(.width, of: 50)
         boostButton.set(.height, of: 50)
         
-        let v = UIView()
-        v.backgroundColor = UIColor.green.withAlphaComponent(0.4)
-        v.translatesAutoresizingMaskIntoConstraints = false
-        addSubview(v)
-//        v.layoutToSuperview(.right, offset: 0)
-//        v.layoutToSuperview(.top, offset: 0)
-//        v.layoutToSuperview(.bottom, offset: 0)
-//        v.set(.width, of: 100)
     }
     
     override func layoutSubviews() {

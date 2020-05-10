@@ -47,5 +47,21 @@ extension SwipeVC: SwipeCardStackDataSource, SwipeCardStackDelegate {
     
     func cardStack(_ cardStack: SwipeCardStack, didSelectCardAt index: Int) {
         guard LoginManager.shared.isLoggedIn() else { return }
+        
+        let id = self.interestIDArray[index]
+        
+        self.presentInterestVC(interestID: id)
+        
+    }
+    
+    
+    //MARK: - Presenter
+    
+    func presentInterestVC(interestID : String) {
+        
+        let vc = InterestProfileVC(style: .insetGrouped)
+        vc.interestID = interestID
+        self.navigationController?.pushViewController(vc, animated: true)
+        
     }
 }
