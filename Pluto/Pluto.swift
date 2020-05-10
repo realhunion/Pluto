@@ -67,7 +67,7 @@ class Pluto {
         
         self.homeTabBarVC.directoryVC.fetchDirectory()
         
-        self.homeTabBarVC.myProfileVC.refreshMyProfileFetcher()
+//        self.homeTabBarVC.myProfileVC.refreshMyProfileFetcher()
     }
     
 }

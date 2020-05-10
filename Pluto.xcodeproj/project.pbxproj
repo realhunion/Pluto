@@ -75,6 +75,7 @@
 		7BC9115024552A6900010D1B /* ConnectionVC+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC9114F24552A6900010D1B /* ConnectionVC+Fetcher.swift */; };
 		7BC911532455337800010D1B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC911522455337800010D1B /* SettingsVC.swift */; };
 		7BCBC580245D4C0000CF7391 /* MyUserFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCBC57F245D4C0000CF7391 /* MyUserFetcher.swift */; };
+		7BE53B532467D66A0016F85E /* MemberCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BE53B522467D66A0016F85E /* MemberCell.swift */; };
 		7BF82F7324539377005C3ED7 /* MyUserProfileFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BF82F7224539377005C3ED7 /* MyUserProfileFetcher.swift */; };
 		9486725C9A7FD3366CD16B31 /* Pods_Pluto.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D46D77F7A7890B9A0F51CD19 /* Pods_Pluto.framework */; };
 /* End PBXBuildFile section */
@@ -151,6 +152,7 @@
 		7BC9114F24552A6900010D1B /* ConnectionVC+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectionVC+Fetcher.swift"; sourceTree = "<group>"; };
 		7BC911522455337800010D1B /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		7BCBC57F245D4C0000CF7391 /* MyUserFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserFetcher.swift; sourceTree = "<group>"; };
+		7BE53B522467D66A0016F85E /* MemberCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemberCell.swift; sourceTree = "<group>"; };
 		7BF82F7224539377005C3ED7 /* MyUserProfileFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserProfileFetcher.swift; sourceTree = "<group>"; };
 		D46D77F7A7890B9A0F51CD19 /* Pods_Pluto.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pluto.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F40BFB02DEC767AA9A665CA4 /* Pods-Pluto.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pluto.debug.xcconfig"; path = "Target Support Files/Pods-Pluto/Pods-Pluto.debug.xcconfig"; sourceTree = "<group>"; };
@@ -221,8 +223,8 @@
 		7B293E7C244E82D4003EE7BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7BE53B512467D6480016F85E /* MemberStack */,
 				7B293E7D244E82D4003EE7BA /* ButtonStackView.swift */,
-				7B293E7E244E82D4003EE7BA /* MembersStackView.swift */,
 				7B293E7F244E82D4003EE7BA /* TinderButton.swift */,
 				7B293E80244E82D4003EE7BA /* SampleCard */,
 			);
@@ -397,6 +399,15 @@
 				7B03AF2224560B240015C19F /* InfoVC.swift */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		7BE53B512467D6480016F85E /* MemberStack */ = {
+			isa = PBXGroup;
+			children = (
+				7B293E7E244E82D4003EE7BA /* MembersStackView.swift */,
+				7BE53B522467D66A0016F85E /* MemberCell.swift */,
+			);
+			path = MemberStack;
 			sourceTree = "<group>";
 		};
 		974BC46D4B048257899070FB /* Frameworks */ = {
@@ -596,6 +607,7 @@
 				7BA7F1CB245B9E2500E330D1 /* SignupView.swift in Sources */,
 				7BA7F1AE245B665F00E330D1 /* SwipeView.swift in Sources */,
 				7BA7F1B2245B665F00E330D1 /* SwipeCard.swift in Sources */,
+				7BE53B532467D66A0016F85E /* MemberCell.swift in Sources */,
 				7B9B9D552453B36B001D1181 /* Connection.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,7 +19,7 @@ extension MyProfileVC : UITextFieldDelegate {
             return false
         }
         let newLength = currentCharacterCount + string.count - range.length
-        return newLength <= 12
+        return newLength <= 20
     }
     
     
@@ -33,6 +33,7 @@ extension MyProfileVC : UITextFieldDelegate {
             let alertController = UIAlertController(title: "Edit Name:", message: "", preferredStyle: UIAlertController.Style.alert)
             alertController.addTextField { (textField : UITextField!) -> Void in
                 textField.text = myU.name
+                textField.delegate = self
             }
             let saveAction = UIAlertAction(title: "Save", style: UIAlertAction.Style.default, handler: { alert -> Void in
                 guard let editedName = alertController.textFields?[0].text else { return }
@@ -84,7 +85,7 @@ extension MyProfileVC : UITextFieldDelegate {
     
     func editImageTapped() {
         
-        guard let myU = self.myUser else { return }
+        guard LoginManager.shared.isLoggedIn() else { return }
         
         DispatchQueue.main.async {
             

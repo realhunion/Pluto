@@ -9,7 +9,8 @@ class SampleCardFooterView: UIView {
     
     private let boostButton: TinderButton = {
         let button = TinderButton()
-        button.setImage(UIImage(named: "lightning"), for: .normal)
+//        button.setImage(UIImage(named: "lightning"), for: .normal)
+        button.setImage(Constant.imageWith(name: "𝐢"), for: .normal)
         button.addTarget(self, action: #selector(handleTap), for: .touchUpInside)
         button.translatesAutoresizingMaskIntoConstraints = false
         

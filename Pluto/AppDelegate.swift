@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func applicationWillEnterForeground(_ application: UIApplication) {
-//        pluto?.appWillEnterForeground()
+        pluto?.appWillEnterForeground()
     }
     
     

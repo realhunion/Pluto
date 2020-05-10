@@ -56,25 +56,25 @@ extension LoginView {
                 return
             }
             
-            if !user.isEmailVerified {
-                self.loginButton.setTitle("Log In", for: .normal)
-                self.loginButton.isEnabled = true
-                self.presentAlertView(title: "Account not verified.", subtitle: "Check your email to verify.")
-
-                user.sendEmailVerification(completion: { (err) in })
-            }
-            else {
+//            if !user.isEmailVerified {
+//                self.loginButton.setTitle("Log In", for: .normal)
+//                self.loginButton.isEnabled = true
+//                self.presentAlertView(title: "Account not verified.", subtitle: "Check your email to verify.")
+//
+//                user.sendEmailVerification(completion: { (err) in })
+//            }
+//            else {
                 
-                let db = Firestore.firestore()
-                db.collection("User-Profile").document(user.uid).setData(["email":email], merge: true) { (err) in
-                    guard err == nil else { return }
+//                let db = Firestore.firestore()
+//                db.collection("User-Profile").document(user.uid).setData(["email":email], merge: true) { (err) in
+//                    guard err == nil else { return }
                     
                     (UIApplication.shared.delegate as! AppDelegate).pluto?.logIn()
-                }
+//                }
                 //FIX: better to only pick up DirectoryFetcher on success login.
                 
                 
-            }
+//            }
             
             
             

@@ -20,11 +20,18 @@ class MyProfileEditor {
     
     func saveUserName(name : String) {
         
-        guard let myUID = Auth.auth().currentUser?.uid else { return }
+        guard let myUser = Auth.auth().currentUser else { return }
+        let myUID = myUser.uid
         
         let payload = ["name" : name] as [String:Any]
-        db.collection("User-Profile").document(myUID).setData(payload, merge: true)
-        
+        db.collection("User-Profile").document(myUID).setData(payload, merge: true) { (err) in
+            guard err == nil else { return }
+            
+            let changeRequest = myUser.createProfileChangeRequest()
+            changeRequest.displayName = name
+            changeRequest.commitChanges { (error) in
+            }
+        }
     }
     
     

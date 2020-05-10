@@ -24,6 +24,7 @@ class InterestProfileVC: UITableViewController {
     }
     
     var interest : Interest!
+//    var interestID : String!
     
     var interestUsersFetcher : UsersFetcher?
     
@@ -35,15 +36,19 @@ class InterestProfileVC: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationItem.largeTitleDisplayMode = .never
         
-        self.setupFetcher()
+//        SwipeManager.shared.getInterest(interestID: self.interestID) { (i) in
+//            guard inter = i else { return }
+//        }
         
+        self.setupFetcher()
         self.setupHeaderProfile()
         
         self.tableView.register(SubtitleTableViewCell.classForCoder(), forCellReuseIdentifier: "interestProfileCell")
     }
     
     func setupFetcher() {
-        self.interestUsersFetcher = UsersFetcher(userIDArray: self.interest.likedBy)
+        //FIX: make it such that they dont call on users again.
+        self.interestUsersFetcher = UsersFetcher(userIDArray: self.interest.likedBy.map({$0.userID}))
         self.interestUsersFetcher?.delegate = self
         self.interestUsersFetcher?.fetchInterestProfile()
     }

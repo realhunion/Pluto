@@ -25,6 +25,8 @@ extension SignupView {
         self.signupButton.setTitle("Signing up...", for: .normal)
         self.signupButton.isEnabled = false
         
+//        self.presentAlertView(title: "Bob's ?", subtitle: "")
+        
         Auth.auth().createUser(withEmail: email, password: pass) { (authResult, err) in
             
             guard let user = authResult?.user else {
@@ -42,33 +44,47 @@ extension SignupView {
             
             let dispatchGroup = DispatchGroup()
             
+            var theImageURL = "https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=100"
             dispatchGroup.enter()
-            self.db.collection("User-Profile").document(user.uid).setData(["classYear":classYear, "dateJoined":FieldValue.serverTimestamp(),"name":name, "description":"🚀", "imageURL":"https://images.unsplash.com/photo-1511367461989-f85a21fda167?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=100"], completion: { (err) in
+            self.updateFirebaseUserImage(image: UIImage(named: "travisScott")!) { (url) in
+                guard let theURL = url else { return }
+                theImageURL = theURL.absoluteString
                 dispatchGroup.leave()
-            })
-            
-            dispatchGroup.enter()
-            user.sendEmailVerification(completion: { (err) in
-                dispatchGroup.leave()
-            })
+            }
             
             dispatchGroup.enter()
             let changeRequest = user.createProfileChangeRequest()
             changeRequest.displayName = name
             changeRequest.commitChanges { (error) in
+                guard err == nil else { return }
                 dispatchGroup.leave()
             }
             
+            dispatchGroup.enter()
+            self.db.collection("User-Profile").document(user.uid).setData(["classYear":classYear, "dateJoined":FieldValue.serverTimestamp(),"name":name, "description":"🚀", "email":email, "imageURL":theImageURL], completion: { (err) in
+                guard err == nil else { return }
+                dispatchGroup.leave()
+            })
+ 
+            
+//            dispatchGroup.enter()
+//            user.sendEmailVerification(completion: { (err) in
+//                dispatchGroup.leave()
+//            })
+        
+            
             dispatchGroup.notify(queue: DispatchQueue.main, execute: {
                 
-                self.signupButton.setTitle("Sign up!", for: .normal)
-                self.signupButton.isEnabled = false
+//                self.signupButton.setTitle("Sign up!", for: .normal)
+//                self.signupButton.isEnabled = false
                 
-                let alert = UIAlertController(title: "Email Sent!", message: "Check your inbox to verify you are a Grinnell Student.", preferredStyle: .alert)
-                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (act) in
-                    LoginManager.shared.presentLoginVC(email: email, pass: pass)
-                }))
-                UIApplication.topViewController()?.present(alert, animated: true)
+//                let alert = UIAlertController(title: "Email Sent!", message: "Check your inbox to verify you are a Grinnell Student.", preferredStyle: .alert)
+//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (act) in
+//                    LoginManager.shared.presentLoginVC(email: email, pass: pass)
+//                }))
+//                UIApplication.topViewController()?.present(alert, animated: true)
+                
+                (UIApplication.shared.delegate as! AppDelegate).pluto?.logIn()
                 
             })
             
@@ -80,7 +96,7 @@ extension SignupView {
     }
     
     
-    func presentAlertView(title : String, subtitle : String) {
+    func presentAlertView(title : String, subtitle : String?) {
         
         let alert = UIAlertController(title: title, message: subtitle, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
@@ -122,11 +138,11 @@ extension SignupView {
             self.animateTextFieldError(textField: self.emailTextField, errorText: "Please enter a valid email.")
             allGood = false
         }
-        else if isSchoolEmail(emailID: email) == false {
-            self.emailTextField.text = nil
-            self.animateTextFieldError(textField: self.emailTextField, errorText: "Please enter your .edu email")
-            allGood = false
-        }
+//        else if isSchoolEmail(emailID: email) == false {
+//            self.emailTextField.text = nil
+//            self.animateTextFieldError(textField: self.emailTextField, errorText: "Please enter your .edu email")
+//            allGood = false
+//        }
         
         if pass == "" {
             self.animateTextFieldError(textField: self.passTextField, errorText: self.passwordPlaceholder)
@@ -181,6 +197,32 @@ extension SignupView {
     
     
     
+    
+    
+    func updateFirebaseUserImage(image : UIImage, completion:@escaping (_ userImageURL : URL?)->Void){
+        
+        guard let myUID = Auth.auth().currentUser?.uid else { return }
+        
+        if let imageData = image.jpegData(compressionQuality: 0.8) {
+            
+            let filePath = "User-Profile-Images/\(myUID).jpg"
+            
+            let metadata = StorageMetadata()
+            metadata.contentType = "image/jpeg"
+            
+            let storageRef = Storage.storage()
+            storageRef.reference(withPath: filePath).putData(imageData, metadata: metadata) { (stoMeta, err) in
+                guard err == nil else { completion(nil); return }
+                
+                storageRef.reference(withPath: filePath).downloadURL { (imgUrl, err2) in
+                    guard let url = imgUrl else { completion(nil); return }
+                    
+                    completion(url)
+                    return
+                }
+            }
+        }
+    }
     
     
     

@@ -33,8 +33,8 @@ class SwipeManager {
                 
                 guard let myU = myUser else { completion(iArray); return}
                 
-                iArray = iArray.filter({!myU.interests.contains($0)})
-                iArray = iArray.filter({!myU.interestsSeen.contains($0)})
+//                iArray = iArray.filter({!myU.interests.contains($0)})
+//                iArray = iArray.filter({!myU.interestsSeen.contains($0)})
                 completion(iArray)
                 return
                 
@@ -93,19 +93,22 @@ class SwipeManager {
     
     func swipedLeft(interestID : String) {
         
+        return
+        
         guard let myUID = Auth.auth().currentUser?.uid else { return }
         
         let batch = db.batch()
         
         let ref1 = db.collection("User-Profile").document(myUID)
-        let payload1 = ["interestsSeen":FieldValue.arrayUnion([interestID]),
+//        let payload1 = ["interestsSeen":FieldValue.delete(),
+//            "interestsSeen":FieldValue.arrayUnion([interestID]),
 //                        "interests":FieldValue.arrayRemove([interestID]),
-            ] as [String:Any]
-        batch.updateData(payload1, forDocument: ref1)
+//            ] as [String:Any]
+//        batch.updateData(payload1, forDocument: ref1)
         
-//        let ref2 = db.collection("Interest-Profile").document(interestID)
-//        let payload2 = ["likedBy":FieldValue.arrayRemove([myUID])] as [String:Any]
-//        batch.updateData(payload2, forDocument: ref2)
+        let ref2 = db.collection("Interest-Profile").document(interestID)
+        let payload2 = ["likedBy":FieldValue.delete()] as [String:Any]
+        batch.updateData(payload2, forDocument: ref2)
         
         batch.commit()
         
@@ -114,18 +117,28 @@ class SwipeManager {
     
     func swipedRight(interestID : String) {
         
-        guard let myUID = Auth.auth().currentUser?.uid else { return }
+        guard let myUser = Auth.auth().currentUser else { return }
+        let myUID = myUser.uid
         
         let batch = db.batch()
         
         let ref1 = db.collection("User-Profile").document(myUID)
-        let payload1 = ["interests":FieldValue.arrayUnion([interestID]),
-//                        "interestsSeen":FieldValue.arrayRemove([interestID]),
-            ] as [String:Any]
+        
+        let payload1 = ["interests":FieldValue.arrayUnion([interestID])] as [String:Any]
         batch.updateData(payload1, forDocument: ref1)
         
+        
         let ref2 = db.collection("Interest-Profile").document(interestID)
-        let payload2 = ["likedBy":FieldValue.arrayUnion([myUID])] as [String:Any]
+        
+        var myName = myUser.displayName ?? ""
+        if let myFirstName = myName.components(separatedBy: " ").first {
+            myName = myFirstName
+        }
+        let item = ["userID":myUID, "name":myName]
+        let payload2 = ["likedBy":FieldValue.arrayUnion([item])] as [String:Any]
+        
+        
+        
         batch.updateData(payload2, forDocument: ref2)
         
         batch.commit()
@@ -145,9 +158,18 @@ class SwipeManager {
             
             if let name = doc.data()?["name"] as? String, let description = doc.data()?["description"] as? String, let imageURL = doc.data()?["imageURL"] as? String {
                 
-                let likedBy = doc.data()?["likedBy"] as? [String] ?? []
+                var metaUserArray : [MetaUser] = []
+                let likedBy = doc.data()?["likedBy"] as? [Any] ?? []
+                for object in likedBy {
+                    if let o = object as? [String:Any] {
+                        if let uid = o["userID"] as? String, let name = o["name"] as? String {
+                            let mUser = MetaUser(userID: uid, name: name)
+                            metaUserArray.append(mUser)
+                        }
+                    }
+                }
                 
-                let interest = Interest(interestID: interestID, name: name, description: description, imageURL: imageURL, likedBy: likedBy)
+                let interest = Interest(interestID: interestID, name: name, description: description, imageURL: imageURL, likedBy: metaUserArray)
                 completion(interest)
                 return
                 

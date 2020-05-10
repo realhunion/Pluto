@@ -22,13 +22,13 @@ class LoginManager {
             self.presentSignupVC()
             return false
         }
-        if user.isEmailVerified == false {
-            self.presentLoginVC(email: user.email)
-            return false
-        }
-        else {
+//        if user.isEmailVerified == false {
+//            self.presentLoginVC(email: user.email)
+//            return false
+//        }
+//        else {
             return true
-        }
+//        }
     }
     
     

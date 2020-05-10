@@ -80,6 +80,38 @@ extension UIApplication {
 
 enum Constant {
     
+    static func imageWith(name: String?) -> UIImage? {
+        let frame = CGRect(x: 0, y: 0, width: 200, height: 200)
+        let nameLabel = UILabel(frame: frame)
+        nameLabel.textAlignment = .center
+        nameLabel.backgroundColor = UIColor.white
+        nameLabel.textColor = Constant.oPrimary
+        
+        //        let view = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 200))
+        //        // Create a gradient layer
+        //        let gradient = CAGradientLayer()
+        //        gradient.colors = [UIColor.red.cgColor, UIColor.blue.cgColor]
+        //        gradient.startPoint = CGPoint(x: 0.0, y: 0.5)
+        //        gradient.endPoint = CGPoint(x: 1.0, y: 0.5)
+        //        gradient.frame = view.bounds
+        //        view.layer.addSublayer(gradient)
+        //
+        //        nameLabel.addSubview(view)
+        //        view.mask = nameLabel
+        
+        
+        nameLabel.font = UIFont.systemFont(ofSize: 112.0, weight: .heavy)
+        nameLabel.adjustsFontSizeToFitWidth = true
+        nameLabel.text = name
+        UIGraphicsBeginImageContext(frame.size)
+        if let currentContext = UIGraphicsGetCurrentContext() {
+            nameLabel.layer.render(in: currentContext)
+            let nameImage = UIGraphicsGetImageFromCurrentImageContext()
+            return nameImage
+        }
+        return nil
+    }
+    
     static let retro200 = [SampleCardModel(title: "The Beatles", description: "#music", imageURL: URL(string: "https://www.beatlesbible.com/wp/media/beatles-mad-day-out_13.jpg")),
                            SampleCardModel(title: "The Rolling Stones", description: "#music", imageURL: URL(string: "https://66.media.tumblr.com/bbce574155a5fd7f40b88a5643530638/tumblr_mymkd1BMZ81r6sispo1_r1_1280.jpg")),
                            SampleCardModel(title: "Elvis Presley", description: "#music", imageURL: URL(string: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/35/Elvis_Presley_Jailhouse_Rock.jpg/1200px-Elvis_Presley_Jailhouse_Rock.jpg")),

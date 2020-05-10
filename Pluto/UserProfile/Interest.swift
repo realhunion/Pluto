@@ -7,6 +7,17 @@
 //
 
 import Foundation
+import Firebase
+
+struct MetaUser {
+    var userID : String
+    var name : String
+    func getImageRef() -> StorageReference {
+        let userImagePath = "User-Profile-Images/\(self.userID).jpg"
+        let storageRef = Storage.storage()
+        return storageRef.reference(withPath: userImagePath)
+    }
+}
 
 class Interest {
     
@@ -14,8 +25,8 @@ class Interest {
     var name : String
     var description : String
     var imageURL : String
-    var likedBy : [String]
-    init(interestID : String, name : String, description : String, imageURL : String, likedBy : [String]) {
+    var likedBy : [MetaUser]
+    init(interestID : String, name : String, description : String, imageURL : String, likedBy : [MetaUser]) {
         self.interestID = interestID
         self.name = name
         self.description = description

@@ -17,7 +17,7 @@ class SignupView: UIView {
     let db = Firestore.firestore()
     
     let namePlaceholder = "Your Name"
-    let emailPlaceholder = "Your .edu Email"
+    let emailPlaceholder = "Your Email"
     let passwordPlaceholder = "Choose a Password"
     
     deinit {
@@ -118,9 +118,9 @@ class SignupView: UIView {
     
     lazy var detailLabel : UILabel = {
         let label = UILabel()
-        label.text = "Hunain Ali x James Lim"
-        label.font = UIFont.systemFont(ofSize: 11.0, weight: .bold)
-        label.textColor = UIColor.systemGray
+        label.text = "Hunain Ali x James Lim 🚀"
+        label.font = UIFont.systemFont(ofSize: 12.0, weight: .semibold)
+        label.textColor = UIColor.lightGray
         label.textAlignment = .center
         
         return label
