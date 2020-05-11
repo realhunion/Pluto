@@ -53,8 +53,10 @@ class MyUserProfileFetcher {
                 
                 var interestArray : [Interest] = []
                 let dGroup = DispatchGroup()
+                dGroup.enter()
                 InterestDirectory.shared.getInterests(interestIDArray: interests) { (iArray) in
                     interestArray = iArray
+                    dGroup.leave()
                 }
                 
                 dGroup.notify(queue: .main) {

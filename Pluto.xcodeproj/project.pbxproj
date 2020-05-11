@@ -70,6 +70,7 @@
 		7BAB8E06244BB51100997AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB8E05244BB51100997AD6 /* Assets.xcassets */; };
 		7BAB8E09244BB51100997AD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB8E07244BB51100997AD6 /* LaunchScreen.storyboard */; };
 		7BAB8E11244BB6F900997AD6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7BAB8E10244BB6F900997AD6 /* GoogleService-Info.plist */; };
+		7BBB8C2F24691D6000D993FE /* SigningUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BBB8C2E24691D6000D993FE /* SigningUpView.swift */; };
 		7BC9115024552A6900010D1B /* ConnectionVC+Fetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC9114F24552A6900010D1B /* ConnectionVC+Fetcher.swift */; };
 		7BC911532455337800010D1B /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BC911522455337800010D1B /* SettingsVC.swift */; };
 		7BCBC580245D4C0000CF7391 /* MyUserFetcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BCBC57F245D4C0000CF7391 /* MyUserFetcher.swift */; };
@@ -145,6 +146,7 @@
 		7BAB8E08244BB51100997AD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7BAB8E0A244BB51100997AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BAB8E10244BB6F900997AD6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7BBB8C2E24691D6000D993FE /* SigningUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningUpView.swift; sourceTree = "<group>"; };
 		7BC9114F24552A6900010D1B /* ConnectionVC+Fetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConnectionVC+Fetcher.swift"; sourceTree = "<group>"; };
 		7BC911522455337800010D1B /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		7BCBC57F245D4C0000CF7391 /* MyUserFetcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUserFetcher.swift; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 				7BA7F1C3245B9E2500E330D1 /* LoginView.swift */,
 				7BA7F1C4245B9E2500E330D1 /* SignupView+Button.swift */,
 				7BA7F1C6245B9E2500E330D1 /* SignupView.swift */,
+				7BBB8C2E24691D6000D993FE /* SigningUpView.swift */,
 			);
 			path = LoginManager;
 			sourceTree = "<group>";
@@ -572,6 +575,7 @@
 				7BA7F1AF245B665F00E330D1 /* CardTransformProvider.swift in Sources */,
 				7BA7F1BA245B665F00E330D1 /* CardStackStateManager.swift in Sources */,
 				7BCBC580245D4C0000CF7391 /* MyUserFetcher.swift in Sources */,
+				7BBB8C2F24691D6000D993FE /* SigningUpView.swift in Sources */,
 				7BA7F1C9245B9E2500E330D1 /* SignupView+Button.swift in Sources */,
 				7BA7F1BE245B665F00E330D1 /* UIView+Extensions.swift in Sources */,
 				7B9223DE2452991A0057DECF /* ConnectionVC.swift in Sources */,
@@ -761,7 +765,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.theBumpInitiative.Pluto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -782,7 +786,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.01;
+				MARKETING_VERSION = 1.04;
 				PRODUCT_BUNDLE_IDENTIFIER = com.theBumpInitiative.Pluto;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

@@ -25,7 +25,27 @@ extension SignupView {
         self.signupButton.setTitle("Signing up...", for: .normal)
         self.signupButton.isEnabled = false
         
-//        self.presentAlertView(title: "Bob's ?", subtitle: "")
+        SwiftEntryKit.dismiss {
+            self.presentGrinnellianTest { (isGood) in
+                if isGood {
+                    let v = SigningUpView()
+                    var atr = Constant.centerPopUpAttributes
+                    atr.entryInteraction = .absorbTouches
+                    atr.screenInteraction = .absorbTouches
+                    atr.scroll = .disabled
+                    DispatchQueue.main.async {
+                        SwiftEntryKit.display(entry: v, using: atr)
+                    }
+                    self.createUser(email: email, pass: pass, name: name, classYear: classYear)
+                } else {
+                    self.presentAlertView(title: "Who are you?", subtitle: nil)
+                }
+            }
+        }
+        
+    }
+    
+    func createUser(email : String, pass : String, name : String, classYear : Int) {
         
         Auth.auth().createUser(withEmail: email, password: pass) { (authResult, err) in
             
@@ -65,35 +85,17 @@ extension SignupView {
                 guard err == nil else { return }
                 dispatchGroup.leave()
             })
- 
             
-//            dispatchGroup.enter()
-//            user.sendEmailVerification(completion: { (err) in
-//                dispatchGroup.leave()
-//            })
-        
             
             dispatchGroup.notify(queue: DispatchQueue.main, execute: {
-                
-//                self.signupButton.setTitle("Sign up!", for: .normal)
-//                self.signupButton.isEnabled = false
-                
-//                let alert = UIAlertController(title: "Email Sent!", message: "Check your inbox to verify you are a Grinnell Student.", preferredStyle: .alert)
-//                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (act) in
-//                    LoginManager.shared.presentLoginVC(email: email, pass: pass)
-//                }))
-//                UIApplication.topViewController()?.present(alert, animated: true)
                 
                 (UIApplication.shared.delegate as! AppDelegate).pluto?.logIn()
                 
             })
-            
-            
-            
-            
-        }
         
+        }
     }
+
     
     
     func presentAlertView(title : String, subtitle : String?) {
@@ -107,6 +109,35 @@ extension SignupView {
         
     }
     
+    
+    
+    func presentGrinnellianTest(completion:@escaping (Bool)->Void) {
+        
+        let alertController = UIAlertController(title: "Grinnellian Test", message: nil, preferredStyle: UIAlertController.Style.alert)
+        alertController.addTextField { (textField : UITextField!) -> Void in
+            textField.placeholder = "Bob's ???????????"
+        }
+        let goAction = UIAlertAction(title: "Go", style: UIAlertAction.Style.default, handler: { alert -> Void in
+            guard let entry = alertController.textFields?[0].text else { return }
+            print("bono \(entry)")
+            
+            if entry == "underground" || entry == "Underground" {
+                completion(true)
+            } else {
+                completion(false)
+            }
+            
+        })
+        let cancelAction = UIAlertAction(title: "Cancel", style: UIAlertAction.Style.default, handler: {
+            (action : UIAlertAction!) -> Void in })
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(goAction)
+        
+        DispatchQueue.main.async {
+            UIApplication.topViewController()?.present(alertController, animated: true, completion: nil)
+        }
+    }
     
     
     

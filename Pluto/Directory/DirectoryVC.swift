@@ -28,6 +28,7 @@ class DirectoryVC: UITableViewController {
     
     func shutDown() {
         self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popToRootViewController(animated: false)
         
         self.myUserFetcher?.shutDown()
         self.myUserFetcher = nil

@@ -23,10 +23,10 @@ class Pluto {
     
     func refreshControllers() {
         
+        UserDirectory.shared.shutDown()
+        InterestDirectory.shared.shutDown()
+        
         SwiftEntryKit.dismiss()
-        self.homeTabBarVC.swipeVC.dismiss(animated: false, completion: nil)
-        self.homeTabBarVC.directoryVC.dismiss(animated: false, completion: nil)
-        self.homeTabBarVC.myProfileVC.dismiss(animated: false, completion: nil)
         
         self.homeTabBarVC.swipeVC.shutDown()
         self.homeTabBarVC.swipeVC.fetchCards()

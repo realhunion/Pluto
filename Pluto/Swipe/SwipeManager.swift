@@ -21,7 +21,7 @@ class SwipeManager {
     func getCards(completion: @escaping (_ interestIDArray : [String]?) -> Void){
         
         self.maxInterestID { (maximumID) in
-            print("xcx \(maximumID)")
+            
             guard let maxID = maximumID else { completion(nil); return }
             
             let iArrayNumber = Array(1...maxID)
@@ -33,8 +33,8 @@ class SwipeManager {
                 
                 guard let myU = myUser else { completion(iArray); return}
                 
-//                iArray = iArray.filter({!myU.interests.contains($0)})
-//                iArray = iArray.filter({!myU.interestsSeen.contains($0)})
+                iArray = iArray.filter({!myU.interests.contains($0)})
+                iArray = iArray.filter({!myU.interestsSeen.contains($0)})
                 completion(iArray)
                 return
                 

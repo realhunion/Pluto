@@ -42,6 +42,7 @@ class MyProfileVC: UITableViewController {
     
     func shutDown() {
         self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popToRootViewController(animated: false)
         
         self.myProfileFetcher?.shutDown()
         self.myProfileFetcher = nil

@@ -27,6 +27,8 @@ class SwipeVC: UIViewController {
     }
     
     func shutDown() {
+        self.dismiss(animated: false, completion: nil)
+        self.navigationController?.popToRootViewController(animated: false)
         
         self.stopSpinner()
         self.hideBackLabel()

@@ -26,7 +26,7 @@ extension MyProfileVC : MyUserProfileFetcherDelegate {
     
     func myProfileUpdated(userProfile: UserProfile) {
         
-        self.tableView.backgroundView = nil
+        print("tis")
         
         self.myUser = userProfile
         self.myUser?.interests.sort(by: {Int($0.interestID) ?? 0 < Int($1.interestID) ?? 1})
@@ -37,9 +37,6 @@ extension MyProfileVC : MyUserProfileFetcherDelegate {
     }
     
     func setupMyProfileFetcher() {
-        let spinner = UIActivityIndicatorView()
-        spinner.startAnimating()
-        self.tableView.backgroundView = spinner
         
         self.myProfileFetcher = MyUserProfileFetcher()
         self.myProfileFetcher?.delegate = self
