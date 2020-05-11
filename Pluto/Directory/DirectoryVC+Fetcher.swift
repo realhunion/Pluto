@@ -13,7 +13,7 @@ extension DirectoryVC : MyUserFetcherDelegate {
     
     //MARK: - 2in1 Fetcher
     
-    func setupFetchers() {
+    func setupFetcher() {
         self.setupDirectoryFetcher()
         self.setupMyUserFetcher()
     }

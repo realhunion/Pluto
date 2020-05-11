@@ -21,12 +21,13 @@ class DirectoryVC: UITableViewController {
         
         self.setupRefreshControl()
         
-        self.setupFetchers()
+        self.setupFetcher()
         
         self.tableView.register(SubtitleTableViewCell.classForCoder(), forCellReuseIdentifier: "directoryCell")
     }
     
     func shutDown() {
+        self.dismiss(animated: false, completion: nil)
         
         self.myUserFetcher?.shutDown()
         self.myUserFetcher = nil

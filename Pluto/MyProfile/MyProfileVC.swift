@@ -34,8 +34,7 @@ class MyProfileVC: UITableViewController {
         self.setupBarButton()
         self.setupSegmentControl()
         
-        self.setupMyProfileFetcher()
-//        self.fetchConnections()
+        self.setupFetcher()
         
         self.tableView.register(AccessoryTableViewCell.classForCoder(), forCellReuseIdentifier: "myProfileCell")
     }
@@ -47,6 +46,8 @@ class MyProfileVC: UITableViewController {
         self.myProfileFetcher?.shutDown()
         self.myProfileFetcher = nil
         self.myUser = nil
+        
+        self.connectionArray = []
         
         self.tableView.reloadData()
         
@@ -62,6 +63,8 @@ class MyProfileVC: UITableViewController {
     }
     
     @objc func settingsButtonTapped() {
+        guard LoginManager.shared.isLoggedIn() else { return }
+        
         let vc = SettingsVC(style: .insetGrouped)
         vc.title = "Settings"
         let nvc = UINavigationController(rootViewController: vc)

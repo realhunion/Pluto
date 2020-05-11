@@ -13,6 +13,17 @@ import Firebase
 
 extension MyProfileVC : MyUserProfileFetcherDelegate {
     
+    
+    //MARK: fetcher
+    
+    func setupFetcher() {
+        self.setupMyProfileFetcher()
+    }
+    
+    
+    
+    //MARK: myProf
+    
     func myProfileUpdated(userProfile: UserProfile) {
         
         self.tableView.backgroundView = nil

@@ -93,22 +93,19 @@ class SwipeManager {
     
     func swipedLeft(interestID : String) {
         
-        return
-        
         guard let myUID = Auth.auth().currentUser?.uid else { return }
         
         let batch = db.batch()
         
         let ref1 = db.collection("User-Profile").document(myUID)
-//        let payload1 = ["interestsSeen":FieldValue.delete(),
-//            "interestsSeen":FieldValue.arrayUnion([interestID]),
+        let payload1 = ["interestsSeen":FieldValue.arrayUnion([interestID]),
 //                        "interests":FieldValue.arrayRemove([interestID]),
-//            ] as [String:Any]
-//        batch.updateData(payload1, forDocument: ref1)
+            ] as [String:Any]
+        batch.updateData(payload1, forDocument: ref1)
         
-        let ref2 = db.collection("Interest-Profile").document(interestID)
-        let payload2 = ["likedBy":FieldValue.delete()] as [String:Any]
-        batch.updateData(payload2, forDocument: ref2)
+//        let ref2 = db.collection("Interest-Profile").document(interestID)
+//        let payload2 = ["likedBy":FieldValue.delete()] as [String:Any]
+//        batch.updateData(payload2, forDocument: ref2)
         
         batch.commit()
         
@@ -123,13 +120,11 @@ class SwipeManager {
         let batch = db.batch()
         
         let ref1 = db.collection("User-Profile").document(myUID)
-        
         let payload1 = ["interests":FieldValue.arrayUnion([interestID])] as [String:Any]
         batch.updateData(payload1, forDocument: ref1)
         
         
         let ref2 = db.collection("Interest-Profile").document(interestID)
-        
         var myName = myUser.displayName ?? ""
         if let myFirstName = myName.components(separatedBy: " ").first {
             myName = myFirstName

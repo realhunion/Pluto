@@ -24,16 +24,18 @@ class Pluto {
     func refreshControllers() {
         
         SwiftEntryKit.dismiss()
-        UIApplication.topViewController()?.dismiss(animated: false, completion: nil)
+        self.homeTabBarVC.swipeVC.dismiss(animated: false, completion: nil)
+        self.homeTabBarVC.directoryVC.dismiss(animated: false, completion: nil)
+        self.homeTabBarVC.myProfileVC.dismiss(animated: false, completion: nil)
         
         self.homeTabBarVC.swipeVC.shutDown()
         self.homeTabBarVC.swipeVC.fetchCards()
         
         self.homeTabBarVC.directoryVC.shutDown()
-        self.homeTabBarVC.directoryVC.setupFetchers()
+        self.homeTabBarVC.directoryVC.setupFetcher()
         
         self.homeTabBarVC.myProfileVC.shutDown()
-        self.homeTabBarVC.myProfileVC.setupMyProfileFetcher()
+        self.homeTabBarVC.myProfileVC.setupFetcher()
         
     }
     
@@ -56,8 +58,8 @@ class Pluto {
         
         self.refreshControllers()
         
-        self.homeTabBarVC.currentIndex = 1
-        self.homeTabBarVC.selectedIndex = 1
+        self.homeTabBarVC.currentIndex = 0
+        self.homeTabBarVC.selectedIndex = 0
     }
     
     
