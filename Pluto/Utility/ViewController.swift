@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     }
     
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-//        self.runIt()
+        self.runIt()
     }
     
     func printDate(string: String) {
@@ -31,8 +31,36 @@ class ViewController: UIViewController {
         print(string + formatter.string(from: date))
     }
     
-//    func runIt() {
-//
+    func runIt() {
+        self.view.backgroundColor = UIColor.init(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1.0)
+        
+        let db = Firestore.firestore()
+        db.collection("User-Profile").getDocuments { (snap, err) in
+            guard let docs = snap?.documents else { return }
+            
+            let batch1 = db.batch()
+            let batch2 = db.batch()
+            
+            for i in 0...docs.count-1 {
+                let x = docs[i]
+                let payload = x.data()
+                let ref = db.collection("User-Profile2").document(x.documentID)
+                if i%2==0 {
+                    batch1.setData(payload, forDocument: ref)
+                } else {
+                    batch2.setData(payload, forDocument: ref)
+                }
+            }
+            
+            batch1.commit()
+            batch2.commit()
+            
+            print("finished///")
+            
+        }
+        
+        
+    }
 //        self.view.backgroundColor = UIColor.init(red: CGFloat.random(in: 0...1), green: CGFloat.random(in: 0...1), blue: CGFloat.random(in: 0...1), alpha: 1.0)
 //
 //        var payload : [SampleCardModel] = []

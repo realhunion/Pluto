@@ -19,9 +19,9 @@ class SettingsVC: UITableViewController {
     
     let settingCellArray : [[SettingsCell]] = [
         
-        [SettingsCell(title: "Hunain Ali x James Lim", image: nil, disclosureIndicator: false)],
+        [SettingsCell(title: "Hunain i/b James, Solly, Celeste", image: nil, disclosureIndicator: false)],
         
-        [SettingsCell(title: "Quarantine Build. For 2024. Something we wish we had coming into Grinnell. Find a roomate. Discover your campus.", image: nil, disclosureIndicator: false)],
+        [SettingsCell(title: "The Human Condition. Take 3.", image: nil, disclosureIndicator: false)],
         
         [SettingsCell(title: "Helpline", image: nil, disclosureIndicator: true),
          SettingsCell(title: "Terms & Privacy", image: nil, disclosureIndicator: true),
@@ -114,8 +114,6 @@ class SettingsVC: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        guard LoginManager.shared.isLoggedIn() else { return }
-        
         let settingsCell = self.settingCellArray[indexPath.section][indexPath.row]
         
         switch settingsCell.title {
@@ -125,19 +123,19 @@ class SettingsVC: UITableViewController {
             self.presentHelpline()
 
         case "Terms & Privacy":
-            let vc = InfoVC(style: .insetGrouped)
-            vc.infoText = "Pretty simple.\n\n1. Be a prospective or current student at Grinnell.\n2. Use your real name.\n3. Don't write anything offensive in profile fields.\n4. We reserve right to remove anyone not following 1-3.\n\n5. All data to & from the app is stored on Firebase servers.\n6. Only app admin has root access to database.\n\n7. We're not liable for user's actions stemming on & off the platform.\n\nEnjoy!"
+            let vc = InformationVC(style: .insetGrouped)
+            vc.infoText = "Pretty simple.\n\n1. Be a current student at Grinnell.\n2. Use your real name.\n3. Don't write anything offensive in profile or chat.\n4. We reserve right to remove anyone not following 1-3.\n\n5. All data to & from the app is stored on Firebase servers.\n6. Only app admin has root access to database.\n\n7. We're not liable for user's actions stemming on & off the platform.\n\nEnjoy!"
             vc.title = "Terms & Privacy"
             self.navigationController?.pushViewController(vc, animated: true)
             
         case "Shoutouts":
-            let vc = InfoVC(style: .insetGrouped)
-            vc.infoText = "Shoutout Solly for brilliant idea of Connections.\n\nShoutout Firebase\nShoutout Shuffle.\nShoutout QuickLayout\nShoutout SDWebImage\n\nrentry.co/kctax"
+            let vc = InformationVC(style: .insetGrouped)
+            vc.infoText = "Shoutout Firebase\nShoutout QuickLayout\nShoutout SDWebImage\n\nrentry.co/kctax"
             vc.title = "Shoutouts"
             self.navigationController?.pushViewController(vc, animated: true)
  
         case "Log Out":
-            (UIApplication.shared.delegate as! AppDelegate).pluto?.logOut()
+            Bump.shared.logOut()
             
         default:
             break

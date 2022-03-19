@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InfoVC: UITableViewController {
+class InformationVC: UITableViewController {
     
     var infoText : String!
     

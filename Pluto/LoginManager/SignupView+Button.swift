@@ -113,7 +113,7 @@ extension SignupView {
     
     func presentGrinnellianTest(completion:@escaping (Bool)->Void) {
         
-        let alertController = UIAlertController(title: "Grinnellian Test", message: nil, preferredStyle: UIAlertController.Style.alert)
+        let alertController = UIAlertController(title: "G Test", message: nil, preferredStyle: UIAlertController.Style.alert)
         alertController.addTextField { (textField : UITextField!) -> Void in
             textField.placeholder = "Bob's ???????????"
         }
